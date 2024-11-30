@@ -1,0 +1,131 @@
+/* Global styles for the app */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Arial', sans-serif;
+}
+
+/* Main app container */
+.app {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #f73a00;
+}
+
+/* Header styles */
+.app-header {
+  text-align: center;
+  padding: 20px;
+  background-color: #af2924;
+  color: white;
+  border-radius: 10px;
+  margin-bottom: 50px;
+}
+
+.app-header h1 {
+  font-size: 2.5rem;
+  margin-top: 20px;
+}
+
+/* Search bar container */
+.search-bar-container {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.search-bar {
+  width: 60%;
+  padding: 10px;
+  border-radius: 10px;
+  border: 2px solid #ffffff;
+  font-size: 1rem;
+  margin-right: 10px;
+  
+}
+
+.search-button {
+  padding: 10px 20px;
+  background-color: #f7f7f7;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  font-size: 1rem;
+  margin-bottom: 30px;
+}
+
+.search-button:hover {
+  background-color: #fa630b;
+}
+
+/* Anime list container */
+.trending-now {
+  text-align: center;
+}
+
+.trending-title {
+  font-size: 2rem;
+  margin-bottom: 20px;
+  color: #fdfeff;
+  margin-bottom: 60px;
+}
+
+/* Container for all anime cards */
+.anime-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 20px;
+  justify-content: center;
+}
+
+/* Individual anime card */
+.anime-card {
+  background-color: #fff;
+  border-radius: 15px;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  text-align: center;
+  position: relative;
+}
+
+/* Glow effect on hover */
+.anime-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  animation: glow 1s ease-in-out infinite; /* Glow animation */
+}
+
+/* Glowing animation keyframes */
+@keyframes glow {
+  0% {
+    box-shadow: 0 0 5px #ffffff, 0 0 10px #ffffff, 0 0 15px #ffffff;
+  }
+  50% {
+    box-shadow: 0 0 5px #ffffff, 0 0 10px #ffffff, 0 0 15px #ffffff;
+  }
+  100% {
+    box-shadow: 0 0 5px #ffffff, 0 0 10px #ffffff, 0 0 15px #ffffff;
+  }
+}
+
+.anime-poster {
+  width: 100%;
+  max-height: 700px; /* Adjust this to a more appropriate size */
+  object-fit: cover;
+  border-bottom: 4px solid #1a202c;
+}
+
+.anime-title {
+  font-size: 1.25rem;
+  margin: 10px 0;
+  color: #000000;
+}
+
+.anime-details {
+  font-size: 1rem;
+  color: #0f0808;
+  margin: 5px 0;
+}
