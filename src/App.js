@@ -2,13 +2,14 @@ import React, { useState, useEffect } from 'react';
 import Header from './components/Header';
 import AnimeList from './components/AnimeList';
 import SearchBar from './components/SearchBar';
+import AnimeDetailsModal from './components/AnimeDetailsModal'; // Import the modal component
 import './App.css';
 
 const App = () => {
   const [animes, setAnimes] = useState([]); // State to store anime results
   const [loading, setLoading] = useState(false); // Tracks the loading state
+  const [selectedAnime, setSelectedAnime] = useState(null); // State for selected anime
 
-  // Function to fetch anime data (general or based on search query)
   const fetchAnimeData = async (url) => {
     setLoading(true); // Show loading while fetching
     const response = await fetch(url);
@@ -17,18 +18,24 @@ const App = () => {
     setLoading(false); // Hide loading after fetching
   };
 
-  // Fetch trending anime when the app loads
   useEffect(() => {
     fetchAnimeData('https://api.jikan.moe/v4/top/anime?limit=20');
   }, []);
 
-  // Function to search anime based on user input
   const searchAnime = (query) => {
     if (query) {
       fetchAnimeData(`https://api.jikan.moe/v4/anime?q=${query}&limit=20`);
     } else {
       fetchAnimeData('https://api.jikan.moe/v4/top/anime?limit=20');
     }
+  };
+
+  const handleAnimeClick = (anime) => {
+    setSelectedAnime(anime); // Set the clicked anime as selected
+  };
+
+  const closeModal = () => {
+    setSelectedAnime(null); // Clear selected anime to close the modal
   };
 
   return (
@@ -38,7 +45,10 @@ const App = () => {
       {loading ? (
         <p>Loading...</p>
       ) : (
-        <AnimeList animes={animes} />
+        <AnimeList animes={animes} onAnimeClick={handleAnimeClick} />
+      )}
+      {selectedAnime && (
+        <AnimeDetailsModal anime={selectedAnime} onClose={closeModal} />
       )}
     </div>
   );
